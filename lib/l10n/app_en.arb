@@ -1,0 +1,21 @@
+
+{
+  "@@locale": "en",
+  "whatAreYouLookingFor": "What are you looking for?",
+  "deliverySystemUpdate": "We're upgrading our systems to serve you better! Delivery slots may be limited for a few days. Kindly choose the next available slot while placing your order.",
+  "topPicks": "Top Picks",
+  "bestPrice": "BEST PRICE",
+  "upTo30Off": "Up to 30% Off",
+  "edathala": "Edathala",
+  "aluva": "Aluva",
+  "fruitsVegetables": "Fruits & Vegetables",
+  "meatFish": "Meat & Fish",
+  "dairyEggs": "Dairy & Eggs",
+  "bakery": "Bakery",
+  "snacksBeverages": "Snacks & Beverages",
+  "pantryStaples": "Pantry Staples",
+  "frozenFoods": "Frozen Foods",
+  "smartphones": "Smartphones",
+  "headphones": "Headphones",
+  "shaversTrimmers": "Shavers & Trimmers"
+}
