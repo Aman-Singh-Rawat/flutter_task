@@ -168,11 +168,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children:
-                      categories.map((category) {
+                      categories(context).map((category) {
                         return Container(
-                          margin: const EdgeInsets.only(right: 10),
-                          width: 110,
+                          width: 90,
                           height: 160,
+                          margin: const EdgeInsets.only(right: 10),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
@@ -183,8 +183,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     "assets/images/ic-offer.svg",
                                   )
                                   : itemCategory(
-                                    height: 95,
-                                    width: 100,
+                                    height: 80,
+                                    width: 80,
+                                    radius: 28,
                                     imageWidth: 70,
                                     color: category["itemColor"] as Color,
                                     image: category["itemImage"] as String,
@@ -255,7 +256,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   Spacer(),
                   Text(
-                    "We're upgrading our systems to serve you better! Delivery slots may be limited for a few days. Kindly choose the next available slot while placing your order.",
+                    AppLocalizations.of(context)!.deliverySystemUpdate,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,

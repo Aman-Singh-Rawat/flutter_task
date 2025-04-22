@@ -5,6 +5,7 @@ Widget itemCategory({
   required Color color,
   required String image,
   required String title,
+  required double radius,
   double? imageWidth,
   double? height,
   double? width,
@@ -12,11 +13,12 @@ Widget itemCategory({
   return Column(
     children: [
       Container(
+        padding: const EdgeInsets.all(10),
         width: width ?? 61,
         height: height ?? 60,
         decoration: BoxDecoration(
           color: color,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(radius),
           boxShadow: [
             BoxShadow(
               color: Colors.black12,
@@ -33,11 +35,11 @@ Widget itemCategory({
           ),
         ),
       ),
-      const SizedBox(height: 5),
+      const SizedBox(height: 10),
       Text(
         title,
         textAlign: TextAlign.center,
-        style: const TextStyle(fontSize: 12),
+        style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w600,),
       ),
     ],
   );

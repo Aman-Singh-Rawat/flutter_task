@@ -1,27 +1,29 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFEF8FB), // Light pink background
+      backgroundColor: const Color(0xFFFEF8FB),
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
           icon: CircleAvatar(
             backgroundColor: Colors.grey[100],
-            child: Icon(CupertinoIcons.back, color: Colors.black),
+            child: Icon(
+              CupertinoIcons.back,
+              color: Colors.black,
+              semanticLabel: AppLocalizations.of(context)!.back, // For accessibility
+            ),
           ),
-          onPressed: () {
-            // Go back
-            Navigator.pop(context);
-          },
+          onPressed: () => Navigator.pop(context),
         ),
         title: Text(
-          'My Cart',
-          style: TextStyle(
+          AppLocalizations.of(context)!.myCart,
+          style: const TextStyle(
             color: Colors.black,
             fontSize: 17,
             fontWeight: FontWeight.w900,
@@ -35,16 +37,17 @@ class CartScreen extends StatelessWidget {
           children: [
             Image.asset(
               'assets/images/empty-cart.png',
-              // Add your image to assets folder and pubspec.yaml
               height: 280,
+              semanticLabel: AppLocalizations.of(context)!.emptyCartTitle, // Accessibility
             ),
             Text(
-              'Your cart is currently empty!!!',
+              AppLocalizations.of(context)!.emptyCartTitle,
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w900,
                 color: Colors.grey.shade700,
               ),
+              textAlign: TextAlign.center, // Better for RTL languages
             ),
             const SizedBox(height: 30),
           ],

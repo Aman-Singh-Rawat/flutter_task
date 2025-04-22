@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_task/screens/home/home_screen.dart';
 import 'package:flutter_task/screens/main/main_screen.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../utils/Constant.dart';
 import '../../widgets/item_category.dart';
 import '../../widgets/section_title.dart';
@@ -28,48 +28,48 @@ class _CategoryScreenState extends State<CategoryScreen> {
     Color(0xFFFFD2EB),
   ];
 
-  final List<List<String>> sectionItems = [
+  List<List<String>> sectionItems(BuildContext context) => [
     [
       // Grocery & Fresh
-      "Fruits & Vegetables",
-      "Meat, Fish & Eggs",
-      "Frozen Food",
-      "Bakery & Breads",
-      "Tea, Coffee & Malted Drinks",
-      "Dairy & Ice Creams",
-      "Baby Care & Diapers",
-      "Dry Fruits & Nuts",
-      "Biscuits & Chocolates",
-      "Snacks & Beverages",
-      "Breakfast & Instant Food",
-      "Sauces, Pickles & Spices",
+      AppLocalizations.of(context)!.fruitsVegetables,
+      AppLocalizations.of(context)!.meatFishEggs,
+      AppLocalizations.of(context)!.frozenFood,
+      AppLocalizations.of(context)!.bakeryBreads,
+      AppLocalizations.of(context)!.teaCoffeeDrinks,
+      AppLocalizations.of(context)!.dairyIceCreams,
+      AppLocalizations.of(context)!.babyCareDiapers,
+      AppLocalizations.of(context)!.dryFruitsNuts,
+      AppLocalizations.of(context)!.biscuitsChocolates,
+      AppLocalizations.of(context)!.snacksBeverages,
+      AppLocalizations.of(context)!.breakfastInstantFood,
+      AppLocalizations.of(context)!.saucesPicklesSpices,
     ],
     [
       // Electronics
-      "Mobiles",
-      "Laptops",
-      "Tablets",
-      "Headphones",
-      "Mobiles",
-      "Laptops",
-      "Tablets",
-      "Headphones",
-      "Mobiles",
-      "Laptops",
-      "Tablets",
-      "Headphones",
+      AppLocalizations.of(context)!.mobiles,
+      AppLocalizations.of(context)!.laptops,
+      AppLocalizations.of(context)!.tablets,
+      AppLocalizations.of(context)!.headphones,
+      AppLocalizations.of(context)!.mobiles,
+      AppLocalizations.of(context)!.laptops,
+      AppLocalizations.of(context)!.tablets,
+      AppLocalizations.of(context)!.headphones,
+      AppLocalizations.of(context)!.mobiles,
+      AppLocalizations.of(context)!.laptops,
+      AppLocalizations.of(context)!.tablets,
+      AppLocalizations.of(context)!.headphones,
     ],
     [
       // Home
-      "Furniture",
-      "Home Decor",
-      "Kitchen",
-      "Furniture",
-      "Home Decor",
-      "Kitchen",
-      "Furniture",
-      "Home Decor",
-      "Kitchen",
+      AppLocalizations.of(context)!.furniture,
+      AppLocalizations.of(context)!.homeDecor,
+      AppLocalizations.of(context)!.kitchen,
+      AppLocalizations.of(context)!.furniture,
+      AppLocalizations.of(context)!.homeDecor,
+      AppLocalizations.of(context)!.kitchen,
+      AppLocalizations.of(context)!.furniture,
+      AppLocalizations.of(context)!.homeDecor,
+      AppLocalizations.of(context)!.kitchen,
     ],
   ];
 
@@ -92,6 +92,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final _categories = categories(context);
     return Scaffold(
       backgroundColor: Colors.grey.shade50,
       appBar: AppBar(
@@ -134,7 +135,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
           SizedBox(
             width: 100,
             child: ListView.builder(
-              itemCount: categories.length - 1,
+              itemCount: _categories.length - 1,
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () => scrollToSection(index),
@@ -157,9 +158,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     ),
                     padding: const EdgeInsets.all(10),
                     child: itemCategory(
-                      title: categories[index]["itemName"] as String,
-                      color: categories[index]["itemColor"] as Color,
-                      image: categories[index]["itemImage"] as String,
+                      radius: 20,
+                      title: _categories[index]["itemName"] as String,
+                      color: _categories[index]["itemColor"] as Color,
+                      image: _categories[index]["itemImage"] as String,
                     ),
                   ),
                 );
@@ -173,7 +175,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
               controller: scrollController,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: List.generate(categories.length - 1, (sectionIndex) {
+                children: List.generate(_categories.length - 1, (sectionIndex) {
                   return Container(
                     key: sectionKeys[sectionIndex],
                     padding: const EdgeInsets.all(12),
@@ -181,7 +183,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         sectionTitle(
-                          title: categories[sectionIndex]["itemName"] as String,
+                          title:
+                              _categories[sectionIndex]["itemName"] as String,
                           gradientWidth: 80,
                           sectionTitleSize: 12,
                         ),
@@ -190,32 +193,38 @@ class _CategoryScreenState extends State<CategoryScreen> {
                           crossAxisCount: 3,
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          childAspectRatio: 0.63,
+                          childAspectRatio: 0.68,
                           mainAxisSpacing: 8,
-                          crossAxisSpacing: 2,
+                          crossAxisSpacing: 10,
                           children:
-                              sectionItems[sectionIndex].map((item) {
+                              sectionItems(context)[sectionIndex].map((item) {
                                 return Column(
                                   children: [
-                                    Card(
-                                      elevation: 2,
-                                      color: _selectionItemColor[sectionIndex],
-                                      shape: RoundedRectangleBorder(
+                                    Container(
+                                      height: 80,
+                                      decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
+                                        color:
+                                            _selectionItemColor[sectionIndex],
                                       ),
-                                      child: Image.asset(
-                                        "assets/images/img_fruit.png",
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Image.asset(
+                                          "assets/images/img_grocery.png",
+                                        ),
                                       ),
                                     ),
-                                    Center(
-                                      child: Text(
-                                        item,
-                                        textAlign: TextAlign.center,
-                                        maxLines: 2,
-                                        style: const TextStyle(
-                                          fontSize: 13,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
+                                    const SizedBox(height: 10),
+                                    Text(
+                                      item,
+                                      textAlign: TextAlign.center,
+                                      maxLines: 2,
+                                      style: const TextStyle(
+                                        height: 1,
+                                        fontSize: 13,
+                                        overflow: TextOverflow.ellipsis,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600,
                                       ),
                                     ),
                                   ],
