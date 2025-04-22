@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
@@ -106,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Row(
               children: [
-                SvgPicture.network("https://www.luluhypermarket.in/logo.svg"),
+                SvgPicture.network("https://www.luluhypermarket.in/logo.svg",),
                 Spacer(),
                 Row(
                   children: [
@@ -412,11 +413,12 @@ class _HomeScreenState extends State<HomeScreen> {
             alignment: Alignment.bottomRight,
             child: ClipRRect(
               borderRadius: BorderRadius.only(bottomRight: Radius.circular(20)),
-              child: Image.network(
-                map["pickImage"] as String,
+              child: CachedNetworkImage(
+                imageUrl: map["pickImage"] as String,
                 height: 95,
                 width: double.maxFinite,
                 fit: BoxFit.fill,
+                errorWidget: (context, url, error) => Icon(Icons.error), // Helps debug
               ),
             ),
           ),
